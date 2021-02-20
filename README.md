@@ -60,4 +60,3 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 ## License
 
 MIT
-
