@@ -41,8 +41,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
       "Microsoft.Hosting.Lifetime": "Trace"
     },
     "options": {
-      "file": "MYLOGS$|DATE[dd_mmm]|$.log",  <--- (1)
-      "path":  "/var/logs/", <--- (2)
+      "file": "MYLOG_$|DATE[dd_MMM_yyyy HH_mm]|$.log",  <--- (1)
+      "path":  "c:\temp", <--- (2)
       "size": 5242880 <--- (3)
     }
   },
@@ -55,8 +55,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
    - available options
      - using environment variables support **%temp%\logs** => **C:\Users\...\AppData\Local\Temp**
 3. size
-   - option default to **5242880 (5MB)** in case of missing json
-   - if option is set to **0** means **disable** log shipping.
+   - option default to **1048576 (1MB)** in case of missing json
+   - if option is **missing** means **disable** log shipping based on size.
 ## License
 
 MIT
