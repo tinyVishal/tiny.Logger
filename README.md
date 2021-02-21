@@ -8,6 +8,7 @@
 - Thread safe file logger.
 - Log shipping based on size.
 - File Name support for custom formats
+- Safe execution handles.
 
 ## Installation
 ``` cmd
@@ -57,6 +58,33 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 3. size
    - minimum is **1048576 (1MB)** in case of smaller value than 1MB will be ignored.
    - if option is **missing** means **disable** log shipping based on size.
+
+## Safe Executions
+ **logger.ExecuteWithLog**
+ Use this option to wrap exuection with exception handling
+ ```
+ 
+        public int Sample1Sum(int i, int j)
+        {
+            int k = 0;
+            _logger.ExecuteWithLog(() => { k = i + j; });
+            return k;
+        }
+
+        public int Sample2Sum(int i, int j)
+        {
+            return _logger.ExecuteWithLog<int>(() => i + j);
+        }
+
+        public int Sample3Sum(int i, int j)
+        {
+            return _logger.ExecuteWithLog<int>(() => i/0 + j, defaultResult: 0);
+        }
+```
+
+***ps: You can use Exception, for after execution deligates to perform operations based on your needs ***
+
+ 
 ## License
 
 MIT
