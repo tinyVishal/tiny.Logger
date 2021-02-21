@@ -1,6 +1,6 @@
 # tiny.Logger
-## _Most powerful, multithreaded file logger for high touch application written for .net 5_
-
+#### **Most powerful, multithreaded file logger for high touch application written for .net** 
+#### 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 ## Features
@@ -9,32 +9,37 @@
 - Log shipping based on size.
 - File Name support for custom formats
 - Safe execution handles.
+- .net framework is also supported. 
 
 ## Installation
+
 ``` cmd
 Install-Package tiny.Logger
 ```
 
-## Example 1
+
+## **.net core / .net 5 Sample**
+
+### Example 1
 ![code example](https://github.com/tinyVishal/tiny.Logger/blob/master/example1.PNG?raw=true)
-``` cmd
+``` csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
             Tiny.CreateDefaultBuilderAndTinyLogger(args).....
 
 ```
 
-## Example 2 
+### Example 2 
 ![code example](https://github.com/tinyVishal/tiny.Logger/blob/master/example2.PNG?raw=true)
 
-``` cmd
+``` csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureTinyLogger().....
 ```
 
-## Customization from appsettings.json
+#### Customization from appsettings.json
 
-```
+``` yaml
 "Logging": {
     "LogLevel": {
       "Default": "Trace",
@@ -42,9 +47,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
       "Microsoft.Hosting.Lifetime": "Trace"
     },
     "options": {
-      "file": "MYLOG_$|DATE[dd_MMM_yyyy HH_mm]|$.log",  <--- (1)
-      "path":  "c:\temp", <--- (2)
-      "size": 5242880 <--- (3)
+      "file": "MYLOG_$|DATE[dd_MMM_yyyy HH_mm]|$.log",  //<--- (1)
+      "path":  "c:\temp", //<--- (2)
+      "size": 5242880 //<--- (3)
     }
   },
 ```
@@ -58,11 +63,37 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 3. size
    - minimum is **1048576 (1MB)** in case of smaller value than 1MB will be ignored.
    - if option is **missing** means **disable** log shipping based on size.
+.
+-----
+## .Net Framework Setup.
+``` csharp
+namespace Sample
+{
+    using tiny;
+    using Microsoft.Extensions.Logging;
 
-## Safe Executions
- **logger.ExecuteWithLog**
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // first line of execution or before using logger....
+            Extensions.ConfigureTinyLogger(@"c:\temp", MinLogLevel: LogLevel.Trace, ...);
+            
+            // Code to execute.
+            
+            var data = new Data() { Property1 = "Some value" };
+            Extensions.LogInformation("First Log as information", data);
+            
+            // Code to execute.
+            
+```
+
+# Safe Executions
+ 
+ ##### Example in .net core / .net 5
+ 
  Use this option to wrap exuection with exception handling
- ```
+ ``` csharp
  
         public int Sample1Sum(int i, int j)
         {
@@ -81,8 +112,16 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             return _logger.ExecuteWithLog<int>(() => i/0 + j, defaultResult: 0);
         }
 ```
+___
+##### Example in .net framework
+``` csharp
+            Extensions.ILogger.ExecuteWithLog(() => 
+            { 
+                // code 
+            });
+```
 
-***ps: You can use Exception, for after execution deligates to perform operations based on your needs ***
+###### ps: You can use Exception, for after execution deligates to perform operations based on your needs
 
  
 ## License
