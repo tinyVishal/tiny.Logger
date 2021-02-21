@@ -55,7 +55,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
    - available options
      - using environment variables support **%temp%\logs** => **C:\Users\...\AppData\Local\Temp**
 3. size
-   - option default to **1048576 (1MB)** in case of missing json
+   - minimum is **1048576 (1MB)** in case of smaller value than 1MB will be ignored.
    - if option is **missing** means **disable** log shipping based on size.
 ## License
 
