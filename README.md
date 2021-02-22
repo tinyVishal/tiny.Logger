@@ -48,7 +48,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
     },
     "options": {
       "file": "MYLOG_$|DATE[dd_MMM_yyyy HH_mm]|$.log",  //<--- (1)
-      "path":  "c:\temp", //<--- (2)
+      "path":  "c:\\temp", //<--- (2)
       "size": 5242880 //<--- (3)
     }
   },
