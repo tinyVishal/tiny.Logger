@@ -36,6 +36,12 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureTinyLogger().....
 ```
+to add console logger please pass **true** use. this is very useful in systemd linux environments 
+``` csharp
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureTinyLogger(true).....
+```
 
 #### Customization from appsettings.json
 
