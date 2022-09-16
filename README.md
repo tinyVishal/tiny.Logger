@@ -49,7 +49,8 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
     "options": {
       "file": "MYLOG_$|DATE[dd_MMM_yyyy HH_mm]|$.log",  //<--- (1)
       "path":  "c:\\temp", //<--- (2)
-      "size": 5242880 //<--- (3)
+      "size": 5242880 //<--- (3),
+      "retention-duration": 30 // <--- (4)
     }
   },
 ```
@@ -63,6 +64,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 3. size
    - minimum is **1048576 (1MB)** in case of smaller value than 1MB will be ignored.
    - if option is **missing** means **disable** log shipping based on size.
+4. retention duration in days
+   - number greater than 0. this means, delete old log file whos age is grater than specified number.
+   - if option is **missing** or  **0** means **do not clear old** log files.
 .
 -----
 ## .Net Framework Setup.
