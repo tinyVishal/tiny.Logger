@@ -18,7 +18,7 @@ Install-Package tiny.Logger
 ```
 
 
-## **.net core / .net 5 Sample**
+## **.net core / .net 5/6/8 Sample**
 
 ### Example 1
 ![code example](https://github.com/tinyVishal/tiny.Logger/blob/master/example1.PNG?raw=true)
