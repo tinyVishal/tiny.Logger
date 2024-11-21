@@ -1,7 +1,6 @@
 # tiny.Logger
 #### **Most powerful, multithreaded file logger for high touch application written for .net** 
 #### 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 ## Features
 
@@ -18,7 +17,7 @@ Install-Package tiny.Logger
 ```
 
 
-## **.net core / .net 5/6/8 Sample**
+## **.net core / .net 5/6/8/9 Sample**
 
 ### Example 1
 ![code example](https://github.com/tinyVishal/tiny.Logger/blob/master/example1.PNG?raw=true)
